@@ -7,4 +7,5 @@ def visualize(mt_results, mp_results, title):
     plt.ylabel("Time")
     plt.xlabel("jobs")
     plt.title(title)
+    plt.legend(["Thread", "Process"])
     plt.show()
