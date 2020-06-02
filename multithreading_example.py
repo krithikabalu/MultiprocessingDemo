@@ -3,6 +3,7 @@ from concurrent.futures.thread import ThreadPoolExecutor
 from datetime import datetime
 
 import pandas
+import time
 
 from calculate_sales import calculate_sales
 
@@ -18,4 +19,13 @@ def process():
     print('Execution time: {} '.format((datetime.now() - start).microseconds))
 
 
-process()
+# process()
+
+
+def mt(func, args):
+    marker = time.time()
+    executor = ThreadPoolExecutor(20 * mp.cpu_count())
+    for arg in args:
+        executor.submit(func, arg)
+    executor.shutdown(wait=True)
+    return time.time() - marker
