@@ -3,7 +3,7 @@ from concurrent.futures.thread import ThreadPoolExecutor
 from datetime import datetime
 
 import pandas
-from calculate_sales import calculate_sales
+from calculate_sales import calculate_sales_and_save
 
 
 def process():
@@ -12,7 +12,7 @@ def process():
     start = datetime.now()
     executor = ThreadPoolExecutor(mp.cpu_count())
     for region in regions:
-        executor.submit(calculate_sales, df[df['region'] == region])
+        executor.submit(calculate_sales_and_save, df[df['region'] == region])
     executor.shutdown(wait=True)
     print('Execution time: {} '.format((datetime.now() - start).microseconds))
 

@@ -2,7 +2,7 @@ import multiprocessing as mp
 from datetime import datetime
 import pandas
 
-from calculate_sales import calculate_sales
+from calculate_sales import calculate_sales_and_save
 
 
 def process():
@@ -11,7 +11,7 @@ def process():
     start = datetime.now()
     pool = mp.Pool(mp.cpu_count())
     for region in regions:
-        pool.apply_async(calculate_sales, args=(df[df['region'] == region],))
+        pool.apply_async(calculate_sales_and_save, args=(df[df['region'] == region],))
     pool.close()
     pool.join()
     print('Execution time: {} '.format((datetime.now() - start).microseconds))
