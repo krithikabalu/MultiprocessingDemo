@@ -1,11 +1,12 @@
 import multiprocessing as mlp
+import time
+import urllib.request
+import uuid
 from concurrent.futures.thread import ThreadPoolExecutor
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import uuid
-import time
-import matplotlib.pyplot as plt
-import urllib.request
 
 
 def visualize(mt_results, mp_results, title):
